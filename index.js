@@ -98,7 +98,7 @@ const createBackup = () => {
 };
 
 const dropAllTables = () => {
-    const psql = spawn('psql', ['--dbname=' + targetDbString, '-c', 'DROP SCHEMA public CASCADE; CREATE SCHEMA public;']);
+    const psql = spawn('psql', ['--dbname=' + targetDbString, '-c', 'DROP SCHEMA entity_audit CASCADE; DROP SCHEMA comments CASCADE; DROP SCHEMA book_keeping CASCADE; DROP SCHEMA templates CASCADE; DROP SCHEMA documents CASCADE; DROP SCHEMA communication CASCADE; DROP SCHEMA public CASCADE; CREATE SCHEMA public; CREATE SCHEMA communication; CREATE SCHEMA documents; CREATE SCHEMA templates; CREATE SCHEMA book_keeping; CREATE SCHEMA comments; CREATE SCHEMA entity_audit;']);
 
     psql.stdout.on('data', (data) => {
         logger.debug(`Drop all tables stdout: ${data}`);
